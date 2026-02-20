@@ -1,0 +1,23 @@
+# Global ignores
+
+# Virtual environments
+backend/.venv/
+backend/venv/
+
+# Python cache
+backend/__pycache__/
+backend/*.pyc
+
+# Datasets
+backend/Brain_Tumor_Datasets/
+backend/Brain_Tumor_Datasets copy/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# Logs
+*.log

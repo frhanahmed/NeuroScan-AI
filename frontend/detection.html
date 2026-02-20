@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>NeuroScan AI | Detection</title>
+    <style>
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 0%;
+            height: 2px;
+            background-color: #2563eb;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col pt-24">
+<!--Navbar-->
+<nav class="bg-white/80 backdrop-blur-md shadow-md fixed w-full top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+
+        <div class="text-xl font-bold text-blue-600">
+            🧠 NeuroScan AI
+        </div>
+
+        <!-- Desktop -->
+        <div class="hidden md:flex space-x-6 font-medium">
+            <a href="index.html" class="nav-link relative text-gray-800 hover:text-blue-600 transition">Home</a>
+            <a href="detection.html" class="nav-link relative text-gray-800 hover:text-blue-600 transition">Detection</a>
+            <a href="architecture.html" class="nav-link relative text-gray-800 hover:text-blue-600 transition">Architecture</a>
+            <a href="contact.html" class="nav-link relative text-gray-800 hover:text-blue-600 transition">Contact</a>
+        </div>
+
+        <!-- Mobile -->
+        <button id="menu-btn" class="md:hidden text-2xl text-gray-800 focus:outline-none">
+            ☰
+        </button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-white px-6 pb-4 space-y-3 font-medium">
+        <a href="index.html" class="nav-link block text-gray-800 hover:text-blue-600">Home</a>
+        <a href="detection.html" class="nav-link block text-gray-800 hover:text-blue-600">Detection</a>
+        <a href="architecture.html" class="nav-link block text-gray-800 hover:text-blue-600">Architecture</a>
+        <a href="contact.html" class="nav-link block text-gray-800 hover:text-blue-600">Contact</a>
+    </div>
+</nav>
+<!--Main Content-->
+
+<div class="flex-grow flex items-center justify-center px-4">
+    <div class="bg-white shadow-xl rounded-2xl p-8 w-full max-w-md">
+
+        <h1 class="text-2xl font-bold text-center text-blue-600 mb-6">
+            Brain Tumor Detection
+        </h1>
+
+        <!-- Upload Status -->
+        <div id="uploadStatus" class="mb-4 text-center font-medium"></div>
+
+        <!-- File Input -->
+        <label for="fileInput" class="block mb-2 font-medium">
+            Upload MRI Scan
+        </label>
+
+        <input 
+            type="file" 
+            id="fileInput"
+            accept=".jpg,.jpeg,.png,.pdf"
+            class="w-full mb-4 p-2 border rounded-lg"
+        >
+
+        <!-- Image Preview -->
+        <div id="previewContainer" class="hidden mb-4 text-center">
+            <img id="imagePreview" alt="" class="max-h-48 mx-auto rounded-lg shadow-md"/>
+        </div>
+
+        <!-- Detect Button -->
+        <button 
+            onclick="predictTumor()" 
+            class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition"
+        >
+            Detect
+        </button>
+        <!-- Result -->
+        <div id="result" class="mt-6 text-center text-lg font-semibold"></div>
+
+    </div>
+</div>
+<!--Footer-->
+
+<footer class="bg-black text-white">
+    <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center text-sm">
+        <div class="text-center md:text-left mb-4 md:mb-0">
+            © 2026 NeuroScan AI. All rights reserved.
+            <br>
+            Designed & Developed by Farhan Ahmed
+        </div>
+        <div class="flex space-x-6">
+        <div class="flex space-x-6">
+                <a href="mailto:frhanahmedf21@gmail.com" class="hover:text-blue-400 transition">Email</a>
+                <a href="https://www.linkedin.com/in/farhanahmedf21" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 transition">LinkedIn</a>
+                <a href="https://github.com/frhanahmed" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 transition">GitHub</a>
+                <a href="https://frhanahmed.github.io/Portfolio/" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 transition">Portfolio ↗</a>
+        </div>
+    </div>
+</footer>
+<script src="scripts.js"></script>
+</body>
+</html>
