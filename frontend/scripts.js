@@ -126,7 +126,7 @@ async function predictTumor() {
     resultDiv.className = "mt-6 text-center text-gray-500 font-semibold";
 
     try {
-        const response = await fetch("http://127.0.0.1:5000/predict", {
+        const response = await fetch("https://neuroscan-ai-backend-es08.onrender.com/predict", {
             method: "POST",
             body: formData
         });
