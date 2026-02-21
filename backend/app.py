@@ -3,16 +3,34 @@ from flask_cors import CORS
 import numpy as np
 import cv2
 import fitz  # PyMuPDF
+import os
 from tensorflow.keras.models import load_model
 
 app = Flask(__name__)
 CORS(app)
 
-# Load trained model
-model = load_model("brain-tumor-model.keras")
-
 IMG_SIZE = 128  # Must match training size
 
+# =============================
+# LAZY LOAD MODEL (IMPORTANT)
+# =============================
+
+model = None
+
+def get_model():
+    global model
+    if model is None:
+        print("Loading model...")
+        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+        MODEL_PATH = os.path.join(BASE_DIR, "brain-tumor-model.keras")
+        model = load_model(MODEL_PATH)
+        print("Model loaded successfully!")
+    return model
+
+
+# =============================
+# IMAGE PREPROCESSING
+# =============================
 
 def preprocess_image(img):
     # Apply CLAHE
@@ -31,6 +49,10 @@ def preprocess_image(img):
     return img
 
 
+# =============================
+# PDF TO IMAGE CONVERSION
+# =============================
+
 def convert_pdf_to_image(file_bytes):
     pdf = fitz.open(stream=file_bytes, filetype="pdf")
     page = pdf.load_page(0)  # First page only
@@ -46,6 +68,10 @@ def convert_pdf_to_image(file_bytes):
 
     return img
 
+
+# =============================
+# ROUTES
+# =============================
 
 @app.route("/")
 def home():
@@ -73,11 +99,13 @@ def predict():
                 np.frombuffer(file_bytes, np.uint8),
                 cv2.IMREAD_COLOR
             )
-
         else:
             return jsonify({"error": "Unsupported file format"}), 400
 
         processed_img = preprocess_image(img)
+
+        # 🔥 Lazy load model here
+        model = get_model()
 
         prediction = model.predict(processed_img)
         confidence = float(np.max(prediction))
@@ -92,5 +120,10 @@ def predict():
         return jsonify({"error": str(e)}), 500
 
 
+# =============================
+# PRODUCTION ENTRY POINT
+# =============================
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
