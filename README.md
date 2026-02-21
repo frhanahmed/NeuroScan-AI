@@ -85,33 +85,6 @@ To resolve this:
 
 This reduced startup memory spikes and allowed the backend to run successfully on a free-tier server.
 
----
-
-## 📁 Project Structure
-
-
-NeuroScan-AI/
-│
-├── frontend/
-│ ├── index.html
-│ ├── detection.html
-│ ├── architecture.html
-│ ├── contact.html
-│ ├── scripts.js
-│ └── assets/
-│
-├── backend/
-│ ├── app.py
-│ ├── brain-tumor-model.keras
-│ ├── requirements.txt
-│ └── runtime.txt
-│
-└── README.md
-
-
-
----
-
 ## 📌 Model Details
 
 - CNN Architecture
