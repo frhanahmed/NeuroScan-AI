@@ -85,6 +85,8 @@ To resolve this:
 
 This reduced startup memory spikes and allowed the backend to run successfully on a free-tier server.
 
+---
+
 ## 📌 Model Details
 
 - CNN Architecture
@@ -96,8 +98,6 @@ This reduced startup memory spikes and allowed the backend to run successfully o
   - CLAHE contrast enhancement
   - Normalization
   - Resize
-
----
 
 ---
 
@@ -119,8 +119,6 @@ This version provides:
 - Better deployment control
 - Production-level structure
 - Improved reliability
-
----
 
 ---
 
