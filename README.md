@@ -89,7 +89,7 @@ This reduced startup memory spikes and allowed the backend to run successfully o
 
 ## 📁 Project Structure
 
----
+
 NeuroScan-AI/
 │
 ├── frontend/
@@ -108,7 +108,7 @@ NeuroScan-AI/
 │
 └── README.md
 
----
+
 
 ---
 
